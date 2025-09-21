@@ -1,0 +1,400 @@
+meta:
+  engine: 4.1.0
+  version: 0.0.3
+  author: auryn
+
+units: 
+  kx: cx
+  ky: cy + 1
+  sky: 0.5ky
+  skx: 0.5kx
+  kcow: 14
+  kcoh: 14
+
+points:
+    key.padding: ky
+    zones:
+        main:
+            rows:
+                bottom.row_net: D6
+                home.row_net: D1
+                top.row_net: D0
+            columns:
+                pinky:
+                    key:
+                        col_net: D2
+                        spread: kx
+                ring:
+                    key:
+                        col_net: D3
+                        stagger: 0.4 ky
+                        spread: kx
+                middle:
+                    key:
+                        col_net: D4
+                        stagger: 0.28 ky
+                        spread: kx
+                index:
+                    key:
+                        col_net: D5
+                        stagger: -0.33 ky
+                        spread: kx
+                inner:
+                    key:
+                        col_net: D8
+                        stagger: -0.11 ky 
+                        spread: kx
+        thumb:
+            anchor:
+                ref: main_inner_bottom
+                shift: [-0.5 kx, -1.15 ky]
+            rows.home.row_net: D7
+            columns:
+                inner.key:
+                    origin: [-1 kx, -1.15 ky]
+                    col_net: D4 
+                    spread: kx
+                home.key:
+                    col_net: D5
+                    spread: 1.1 kx
+                    splay: -0.5 ky
+                    origin: [-0.5 kx, -0.15 ky]
+                outer.key:
+                    col_net: D8
+                    spread: 1.1 kx
+                    splay: -0.5 ky 
+                    origin: [-0.52 ky, -0.2 kx]
+        mountscrew_top_left:
+          anchor:
+            ref.aggregate.parts:
+              [main_pinky_top]
+            shift: [-skx, sky]
+          columns.screw.key.tags: [screw]
+        mountscrew_middle_left:
+          anchor:
+            ref.aggregate.parts:
+              [main_middle_top]
+            shift: [-sky, sky]
+          columns.screw.key.tags: [screw]
+        mountscrew_middle_right:
+          anchor:
+            ref.aggregate.parts:
+              [main_middle_top]
+            shift: [sky, sky]
+          columns.screw.key.tags: [screw]
+        mountscrew_bottom_left:
+          anchor:
+            ref.aggregate.parts:
+              [main_pinky_bottom]
+            shift: [-sky, -sky]
+          columns.screw.key.tags: [screw]
+        mountscrew_top_right:
+          anchor:
+            ref.aggregate.parts:
+              [main_inner_top]
+            shift: [skx, sky]
+          columns.screw.key.tags: [screw]
+        mountscrew_bottom_middle:
+          anchor:
+            ref.aggregate.parts:
+              [thumb_inner_home]
+            shift: [-skx, -sky]
+          columns.screw.key.tags: [screw]
+        mcuscrew_bottom_right:
+          anchor:
+            ref.aggregate.parts:
+              [main_inner_home]
+            shift: [34, -5]
+          columns.screw.key.tags: [screw]
+        mcuscrew_bottom_left:
+          anchor:
+            ref.aggregate.parts:
+              [main_inner_home]
+            shift: [12, -5]
+          columns.screw.key.tags: [screw]
+        mcuscrew_top_right:
+          anchor:
+            ref.aggregate.parts:
+              [main_inner_top]
+            shift: [34, -3.5]
+          columns.screw.key.tags: [screw]
+        mcuscrew_top_left:
+          anchor:
+            ref.aggregate.parts:
+              [main_inner_top]
+            shift: [12, -3.5]
+          columns.screw.key.tags: [screw]
+        outer_top_right:
+          anchor:
+            ref.aggregate.parts:
+              [thumb_outer_home]
+            shift: [skx, sky]
+          columns.screw.key.tags: [screw]
+        outer_bottom_right:
+          anchor:
+            ref.aggregate.parts:
+              [thumb_outer_home]
+            shift: [skx, -sky]
+          columns.screw.key.tags: [screw]
+
+outlines:
+    _base: 
+        - what: rectangle
+          bound: true
+          where: 
+            - /main/
+            - /thumb/
+          size: [kx, ky]
+    _switch_cutouts:
+      - what: rectangle
+        where: 
+          - /main/
+          - /thumb/
+        size: [kcow, kcoh]
+    _board_outline:
+        -   what: polygon
+            fillet: 2
+            points:
+                -   ref: thumb_outer_home
+                    shift: [0.6kx, 0.6ky]
+                -   ref: thumb_outer_home
+                    shift: [0.6kx, -0.6ky]
+                -   ref: thumb_outer_home
+                    shift: [-0.4kx, -0.6ky]
+
+                -   ref: thumb_home_home
+                    shift: [0.4kx, -0.6ky]
+                # -   ref: thumb_home_home
+                #     shift: [-0.4kx, -0.6ky]
+
+                -   ref: thumb_inner_home
+                    shift: [0.4kx, -0.6ky]
+                -   ref: thumb_inner_home
+                    shift: [-0.6kx, -0.6ky]
+                -   ref: thumb_inner_home
+                    shift: [-0.6kx, 0.65ky]
+
+                -   ref: main_index_bottom
+                    shift: [-0.6kx, -0.6ky]
+
+                -   ref: main_middle_bottom
+                    shift: [0.4kx, -0.6ky]
+                -   ref: main_middle_bottom
+                    shift: [-0.4kx, -0.6ky]
+
+                -   ref: main_ring_bottom
+                    shift: [0.6kx, -0.6ky]
+                -   ref: main_ring_bottom
+                    shift: [-0.4kx, -0.6ky]
+
+                -   ref: main_pinky_bottom
+                    shift: [0.6kx, -0.6ky]
+                -   ref: main_pinky_bottom
+                    shift: [0.6kx, -0.6ky]
+                -   ref: main_pinky_bottom
+                    shift: [-0.6kx, -0.6ky]
+                
+
+                -   ref: main_pinky_top
+                    shift: [-0.6kx, 0.6ky]
+                -   ref: main_pinky_top
+                    shift: [0.4kx, 0.6ky]
+
+                -   ref: main_ring_top
+                    shift: [-0.6kx, 0.6ky]
+                -   ref: main_ring_top
+                    shift: [0.4kx, 0.6ky]
+
+                -   ref: main_middle_top
+                    shift: [-0.6kx, 0.6ky]
+                -   ref: main_middle_top
+                    shift: [0.6kx, 0.6ky]
+
+                -   ref: main_index_top
+                    shift: [-0.4kx, 0.6ky]
+                -   ref: main_index_top
+                    shift: [0.5kx, 0.6ky]
+
+                -   ref: main_inner_top
+                    shift: [-0.4kx, 0.6ky]
+                -   ref: main_inner_top
+                    shift: [0.6kx, 0.6ky]
+
+                -   ref: main_inner_top
+                    shift: [0.6kx, -0.07ky]
+                -   ref: main_inner_top
+                    shift: [2kx, -0.07ky]
+
+                -   ref: main_inner_bottom
+                    shift: [2kx, -0.9ky]
+    _keycap_outlines:
+          - what: outline
+            name: _base
+            fillet: 2
+    _switch_plate:
+        - what: outline
+          name: _base
+        - what: polygon
+          operation: add
+          points:
+            - ref: thumb_home_home
+              shift: [0.5kx, 0.5 ky]
+            - ref: thumb_outer_home
+              shift: [-0.5kx, 0.5 ky]
+            - ref: thumb_outer_home
+              shift: [0, 0]
+        - what: polygon
+          operation: add
+          points:
+            - ref: main_inner_bottom 
+              shift: [0.5 kx, -0.5 ky]
+            - ref: main_inner_bottom 
+              shift: [0.5 kx, -1 ky]
+            - ref: main_inner_bottom 
+              shift: [-0.2 kx, -0.5 ky]
+        - what: polygon
+          operation: add
+          points:
+            - ref: main_index_bottom 
+              shift: [0, 0]
+            - ref: thumb_inner_home
+              shift: [-0.5 kx, -0.5 ky]
+            - ref: thumb_home_home
+              shift: [-0.5 kx, -0.5 ky]
+        - what: outline
+          name: _switch_plate
+          expand: 2
+          fillet: 2
+        - what: outline
+          name: _switch_cutouts
+          operation: subtract
+
+cases.avocado:
+    -   what: outline
+        name: _board_outline
+        extrude: 3
+        operation: subtract
+    -   what: outline
+        name: _keycap_outlines
+        extrude: 6
+        operation: add
+pcbs:
+  keyboard_pcb:
+    outlines:
+        main.outline: _board_outline
+        keycaps:
+            outline: _keycap_outlines
+            layer: Eco1.User
+    footprints:
+        diode:
+            what: sod-123w
+            where:
+              - /main/
+              - /thumb/
+            params:
+                from: "{{row_net}}"
+                to: "{{row_net}}"
+            adjust:
+                shift: [ -4, -3.6 ]
+                rotate: 90
+        switches:
+            what: choc
+            where: 
+              - /main/
+              - /thumb/
+            params:
+                keycaps: true
+                reverse: true
+                hotswap: true
+                from: "{{col_net}}"
+                to: "{{row_net}}"
+        mcu:
+            what: xiao_ble
+            where:
+                ref: 
+                  - main_inner_top
+                shift: [23, -0.7ky]
+                # rotate: -90
+            params:
+              BATP: pos
+
+        battery_pads:
+          what: pads
+          params:
+            reverse: true
+            net_1: "B+"
+            net_2: "GND"
+            label_1: "+"
+            label_2: ""
+            label_at_bottom: true
+            space: 1.25
+          where:
+            ref: main_inner_bottom
+            shift: [1.7kx, -0.7ky]
+            rotate: 0
+        on_off_switch:
+            what: pcm12
+            where:
+                ref: 
+                  - main_inner_bottom
+                shift: [34, 0]
+                rotate: 90
+            params:
+                from: pos
+                to: B+
+
+        enc_diode:
+            what: sod-123w
+            where:
+              ref: main_inner_bottom
+              shift: [23, 0]
+            params:
+                from: D6
+                to: D6
+            adjust:
+                shift: [ -18, -3.6 ]
+                rotate: -90
+        enc_wheel:
+          what: rotary
+          params:
+            from: D6
+            to: D3
+            A: "D9"
+            B: "D10"
+            C: "GND"
+          where:
+            ref: main_inner_bottom
+            shift: [23, 0]
+            rotate: 270
+        vgn_text: 
+            what: text
+            where: 
+                ref: main_inner_home
+                shift: [0.85kx, -0.4ky]
+            params: &textParams
+                text: GO VEGAN
+                justify: left
+                v_size: 2
+                h_size: 2
+        front_text: &text
+            what: text
+            where: &textWhere
+                ref: main_inner_bottom
+                shift: [20, -10]
+            params: &textParams
+                text: アボカド v0.3
+                justify: left
+        back_text:
+            <<: *text
+            where:
+                <<: *textWhere
+                shift: [20, -10]
+            params:
+                <<: *textParams
+                layer: B.SilkS
+                justify: right mirror
+        screws:
+          what: mounting_hole
+          params:
+            outline: 0.2
+          where: [screw]

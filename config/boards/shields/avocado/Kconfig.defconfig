@@ -1,0 +1,24 @@
+if SHIELD_AVOCADO_RIGHT
+
+config ZMK_KEYBOARD_NAME
+    default "Avocado v0.3"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config ZMK_USB
+    default y
+
+endif
+
+if SHIELD_AVOCADO_LEFT || SHIELD_AVOCADO_RIGHT
+
+config CONFIG_EC11
+  default y
+config CONFIG_EC11_TRIGGER_GLOBAL_THREAD
+  default y
+
+config ZMK_SPLIT
+    default y
+
+endif
