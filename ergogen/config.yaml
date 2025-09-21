@@ -349,15 +349,15 @@ pcbs:
               ref: main_inner_bottom
               shift: [23, 0]
             params:
-                from: D6
-                to: D6
+                from: D7
+                to: D7
             adjust:
                 shift: [ -18, -3.6 ]
                 rotate: -90
         enc_wheel:
           what: rotary
           params:
-            from: D6
+            from: D7
             to: D3
             A: "D9"
             B: "D10"
