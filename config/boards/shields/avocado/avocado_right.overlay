@@ -13,6 +13,6 @@
 };
 
 &right_encoder {
-    status = "disabled";
+    status = "okay";
 };
 
