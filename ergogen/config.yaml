@@ -314,7 +314,6 @@ pcbs:
                 ref: 
                   - main_inner_top
                 shift: [23, -0.7ky]
-                # rotate: -90
             params:
               BATP: pos
 
@@ -346,14 +345,14 @@ pcbs:
         enc_diode:
             what: sod-123w
             where:
-              ref: main_inner_bottom
+              ref: thumb_home_home
               shift: [23, 0]
             params:
                 from: D7
                 to: D7
             adjust:
                 shift: [ -18, -3.6 ]
-                rotate: -90
+                rotate: 90
         enc_wheel:
           what: rotary
           params:
